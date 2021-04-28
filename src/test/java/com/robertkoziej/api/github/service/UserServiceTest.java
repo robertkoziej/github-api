@@ -33,7 +33,7 @@ public class UserServiceTest {
     private GithubService githubService;
 
     @Test
-    void returns_user_by_login() {
+    void should_return_user_by_login() {
         // given
         given(loginRequestCountService.saveLoginRequestCount(eq(LOGIN)))
                 .willReturn(LOGIN_REQUEST_COUNT_MOCK);

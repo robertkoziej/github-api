@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GithubUserCalculationsTest {
 
     @Test
-    void returns_positive_value() {
+    void should_return_positive_value() {
         // given
         GithubUser githubUser = new GithubUser();
         githubUser.setFollowers(5);
@@ -25,7 +25,7 @@ public class GithubUserCalculationsTest {
     }
 
     @Test
-    void returns_zero() {
+    void should_return_zero() {
         // given
         GithubUser githubUser = new GithubUser();
         githubUser.setFollowers(0);
