@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Repository
-public abstract class BaseRepository<T> {
+abstract class BaseRepository<T> {
 
     @PersistenceContext
     protected EntityManager entityManager;

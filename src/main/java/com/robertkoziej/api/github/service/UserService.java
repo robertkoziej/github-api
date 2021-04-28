@@ -4,13 +4,14 @@ import com.robertkoziej.api.github.db.entity.LoginRequestCount;
 import com.robertkoziej.api.github.db.repository.LoginRequestCountRepository;
 import com.robertkoziej.api.github.model.GithubUser;
 import com.robertkoziej.api.github.model.UserResponse;
-import com.robertkoziej.api.github.util.CalculationsUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Optional;
+
+import static com.robertkoziej.api.github.model.util.GithubUserCalculations.getCalculations;
 
 @Service
 @Slf4j
@@ -67,11 +68,5 @@ public class UserService {
                 .createdAt(githubUser.getCreatedAt())
                 .calculations(calculations)
                 .build();
-    }
-
-    private BigDecimal getCalculations(GithubUser githubUser) {
-        int followers = githubUser.getFollowers();
-        int publicRepos = githubUser.getPublicRepos();
-        return CalculationsUtil.getCalculations(followers, publicRepos);
     }
 }

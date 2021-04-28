@@ -1,11 +1,15 @@
-package com.robertkoziej.api.github.util;
+package com.robertkoziej.api.github.model.util;
+
+import com.robertkoziej.api.github.model.GithubUser;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class CalculationsUtil {
+public class GithubUserCalculations {
 
-    public static BigDecimal getCalculations(int followers, int publicRepos) {
+    public static BigDecimal getCalculations(GithubUser githubUser) {
+        int followers = githubUser.getFollowers();
+        int publicRepos = githubUser.getPublicRepos();
         if (followers == 0) {
             return BigDecimal.ZERO;
         }

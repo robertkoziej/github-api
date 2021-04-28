@@ -1,4 +1,4 @@
-package com.robertkoziej.api.github.util;
+package com.robertkoziej.api.github.service.util;
 
 import org.springframework.web.client.RestTemplate;
 

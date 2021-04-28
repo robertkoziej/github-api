@@ -27,18 +27,21 @@ public class UserServiceTest {
     private static final int FOLLOWERS = 2;
     private static final int PUBLIC_REPOS = 3;
 
+    private static final GithubUser GITHUB_USER_MOCK = mockGithubUser();
+    private static final LoginRequestCount LOGIN_REQUEST_COUNT_MOCK = mockLoginRequestCount();
+
     @Mock
     private LoginRequestCountRepository loginRequestCountRepository;
     @Mock
     private GithubService githubService;
 
     @Test
-    void should_return_user_by_login() {
+    void returns_user_by_login() {
         // given
         given(loginRequestCountRepository.getLoginRequestCount(eq(LOGIN)))
-                .willReturn(Optional.of(mockLoginRequestCount(LOGIN)));
+                .willReturn(Optional.of(LOGIN_REQUEST_COUNT_MOCK));
         given(githubService.getGithubUser(eq(LOGIN)))
-                .willReturn(mockGithubUser());
+                .willReturn(GITHUB_USER_MOCK);
         UserService userService = new UserService(loginRequestCountRepository, githubService);
 
         // when
@@ -54,14 +57,14 @@ public class UserServiceTest {
         assertThat(userResponse.getCalculations()).isNotNull();
     }
 
-    private LoginRequestCount mockLoginRequestCount(String login) {
+    private static LoginRequestCount mockLoginRequestCount() {
         return LoginRequestCount.builder()
-                .login(login)
+                .login(LOGIN)
                 .requestCount(1)
                 .build();
     }
 
-    private GithubUser mockGithubUser() {
+    private static GithubUser mockGithubUser() {
         GithubUser githubUser = new GithubUser();
         githubUser.setId(ID);
         githubUser.setLogin(LOGIN);

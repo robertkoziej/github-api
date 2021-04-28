@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Data
 @Builder
-public class UserResponse {
+public final class UserResponse {
     private final long id;
     private final String login;
     private final String name;

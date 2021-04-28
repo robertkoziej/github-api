@@ -10,7 +10,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 public class UserControllerIntegrationTest {
 
     @Test
-    public void should_return_user_response() {
+    public void returns_ok_status_code() {
         String login = "robertkoziej";
         given().get(ServiceMappings.GET__USERS__LOGIN, login)
                 .then()
