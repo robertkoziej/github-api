@@ -1,15 +1,12 @@
 package com.robertkoziej.api.github.service;
 
 import com.robertkoziej.api.github.db.entity.LoginRequestCount;
-import com.robertkoziej.api.github.db.repository.LoginRequestCountRepository;
 import com.robertkoziej.api.github.model.GithubUser;
 import com.robertkoziej.api.github.model.UserResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.eq;
@@ -31,18 +28,18 @@ public class UserServiceTest {
     private static final LoginRequestCount LOGIN_REQUEST_COUNT_MOCK = mockLoginRequestCount();
 
     @Mock
-    private LoginRequestCountRepository loginRequestCountRepository;
+    private LoginRequestCountService loginRequestCountService;
     @Mock
     private GithubService githubService;
 
     @Test
     void returns_user_by_login() {
         // given
-        given(loginRequestCountRepository.getLoginRequestCount(eq(LOGIN)))
-                .willReturn(Optional.of(LOGIN_REQUEST_COUNT_MOCK));
+        given(loginRequestCountService.saveLoginRequestCount(eq(LOGIN)))
+                .willReturn(LOGIN_REQUEST_COUNT_MOCK);
         given(githubService.getGithubUser(eq(LOGIN)))
                 .willReturn(GITHUB_USER_MOCK);
-        UserService userService = new UserService(loginRequestCountRepository, githubService);
+        UserService userService = new UserService(loginRequestCountService, githubService);
 
         // when
         UserResponse userResponse = userService.getUserByLogin(LOGIN);
